@@ -6,7 +6,7 @@ import ProductList from "./Pages/ProductList";
 import Register from "./Pages/Register";
 
 function App() {
-  return <Home />;
+  return <ProductList />;
 }
 
 export default App;
