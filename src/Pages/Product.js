@@ -1,14 +1,15 @@
-import { Add, Remove } from "@material-ui/icons";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Annoucement from "../components/Annoucement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
-import { publicRequest } from "../requestMethods";
 import { mobile } from "../responsive";
+import { Add, Remove } from "@material-ui/icons";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { publicRequest } from "../requestMethods";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -125,6 +126,7 @@ const Product = () => {
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
+  const dispatch = useDispatch();
 
   // side effect
   useEffect(() => {
@@ -149,10 +151,10 @@ const Product = () => {
   };
 
   // Add to cart handler
-  const handleClick = ()=> {
+  const handleClick = () => {
     // update cart
-    
-  }
+    dispatch(addProduct({ ...product, quantity, color, size }));
+  };
 
   return (
     <Container>
