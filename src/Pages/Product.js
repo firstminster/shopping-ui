@@ -1,9 +1,12 @@
 import { Add, Remove } from "@material-ui/icons";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Annoucement from "../components/Annoucement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
+import { publicRequest } from "../requestMethods";
 import { mobile } from "../responsive";
 
 const Container = styled.div``;
@@ -115,30 +118,47 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get("/products/find/" + id);
+        setProduct(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProduct();
+  }, [id]);
+
   return (
     <Container>
       <Navbar />
       <Annoucement />
       <Wrapper>
         <ImgContainer>
-          <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
+          <Image src={product.img} />
         </ImgContainer>
         <InfoContainer>
-          <Title>Denim Jumpsuit</Title>
+          <Title>{product.title}</Title>
           <Desc>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+            {product.desc}
+            {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
             venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
             iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget
             tristique tortor pretium ut. Curabitur elit justo, consequat id
-            condimentum ac, volutpat ornare.
+            condimentum ac, volutpat ornare. */}
           </Desc>
-          <Price>$ 20</Price>
+          <Price>$ {product.price}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
+              {/* {product.color.map((c) => (
+                <FilterColor color={c} key={c} />
+              ))} */}
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>

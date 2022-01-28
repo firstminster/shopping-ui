@@ -54,7 +54,7 @@ const ProductList = () => {
     <Container>
       <Navbar />
       <Annoucement />
-      <Title>Dresses</Title>
+      <Title>{cat}</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
@@ -79,6 +79,7 @@ const ProductList = () => {
         <Filter>
           <FilterText>Sorts Products:</FilterText>
           <Select
+            name="newest"
             defaultValue={"Newest"}
             onChange={(e) => setSort(e.target.value)}
           >
