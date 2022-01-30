@@ -83,7 +83,9 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>Lolop.</Logo>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Logo>Lolop.</Logo>
+          </Link>
         </Center>
         <Right>
           <MenuItem>REGISTER</MenuItem>
