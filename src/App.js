@@ -1,15 +1,16 @@
-import Cart from "./Pages/Cart";
-import Home from "./Pages/Home";
-import Login from "./Pages/Login";
-import Product from "./Pages/Product";
-import ProductList from "./Pages/ProductList";
-import Register from "./Pages/Register";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
+import Cart from "./Pages/Cart";
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
+import Product from "./Pages/Product";
+import ProductList from "./Pages/ProductList";
+import Register from "./Pages/Register";
+import Success from "./Pages/Success";
 
 function App() {
   const user = true;
@@ -27,6 +28,9 @@ function App() {
         </Route>
         <Route path="/cart">
           <Cart />
+        </Route>
+        <Route path="/success">
+          <Success />
         </Route>
         <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
         <Route path="/register">
