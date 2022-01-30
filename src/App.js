@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,7 +14,7 @@ import Register from "./Pages/Register";
 import Success from "./Pages/Success";
 
 function App() {
-  const user = true;
+  const user = useSelector((state) => state.user.currentUser);
   return (
     <Router>
       <Switch>
