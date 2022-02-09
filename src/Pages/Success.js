@@ -5,7 +5,11 @@ const Success = () => {
   const location = useLocation();
 
   console.log(location);
-  return <div>successful</div>;
+  return (
+    <div>
+      <h1>successful Payment Process</h1>
+    </div>
+  );
 };
 
 export default Success;
