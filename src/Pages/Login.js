@@ -72,7 +72,10 @@ const Error = styled.span`
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const dispatch = useDispatch();
+
+  // pulls in data from the global state
   const { isFetching, error } = useSelector((state) => state.user);
 
   // submit login handler
